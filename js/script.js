@@ -1,12 +1,12 @@
 //API BIBLIOTECA:
 
 const formInfo=()=>{
-    let search=document.querySelector("#search");
+    let button=document.querySelector("#button");
 
     search.addEventListener("click", ()=>{
-        let name=document.querySelector("#name");
-        if(name.value!=""){
-          apiSearch(name.value)           
+        let search=document.querySelector("#search");
+        if(search.value!=""){
+          apiSearch(search.value)           
         }
     })  
 }
