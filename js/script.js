@@ -13,7 +13,7 @@ const formInfo=()=>{
 
 
 
-const apiSearch=(search)=>{
+const apiSearchLibrary=(search)=>{
     fetch("https://www.googleapis.com/books/v1/volumes?q="+search)
     .then(response => response.json())
     .then(responseJSON => {
@@ -45,4 +45,21 @@ const mostrarInfo=(data)=>{
 
 // formInfo();
 // let contenedor=document.querySelector("#contenedor")
-apiSearch();
+//apiSearch();
+
+//API FLORA DE ESPAÑA
+
+const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
+const publicCors="https://cors-anywhere.herokuapp.com/"
+const apiSearchTrefle=()=>{
+    fetch(publicCors+"https://trefle.io/api/v1/distributions/spa/plants/?token="+tokenTrefle)
+    .then(response => response.json())
+    .then(responseJSON => {
+	let data = responseJSON;
+	console.log(data)
+    
+        
+    });  
+}
+
+apiSearchTrefle();
