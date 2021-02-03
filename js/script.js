@@ -1,16 +1,20 @@
 //API BIBLIOTECA:
 
+let arrayBusqueda=["Javier Marías","Dolores Redondo", "Antonio Iturbe","Juan Gómez-Jurado","Javier Castillo"]
+
+let busqueda=false;
+
 const formInfo=()=>{
     let button=document.querySelector("#button");
 
-    search.addEventListener("click", ()=>{
+    button.addEventListener("click", ()=>{
         let search=document.querySelector("#search");
         if(search.value!=""){
-          apiSearch(search.value)           
+          apiSearchLibrary(search.value) 
+         busqueda=true;        
         }
     })  
 }
-
 
 
 const apiSearchLibrary=(search)=>{
@@ -20,8 +24,11 @@ const apiSearchLibrary=(search)=>{
 	let data = responseJSON;
 	console.log(data)
     
+    if(busqueda){
+        document.querySelector(".book_info_title").textContent=" Datos obtenidos de la busqueda" 
+    }
         if(data.totalItems!=0){
-         //mostrarInfo(data);
+         mostrarInfo(data.items);
 		}else{
            alert("No se ha encontrado")
         }
@@ -30,29 +37,56 @@ const apiSearchLibrary=(search)=>{
 
 
 const mostrarInfo=(data)=>{
-    contenedor.innerHTML="";
+    let container=document.querySelector(".data__container__books")
+    container.innerHTML="";
 
-    for(foto of data.results) {
-        console.log(foto.preview_photos[0].urls)
+   
+    for(book of data) {
+        let article=document.createElement("article");
+        article.className="article__book";
+
         let img=document.createElement("img");
-        img.setAttribute("src",foto.preview_photos[0].urls.small)
+        img.setAttribute("src",book.volumeInfo.imageLinks.thumbnail)
         img.className="fotos"
-        contenedor.appendChild(img);
+        article.appendChild(img);
+
+        let title=document.createElement("h5");
+        title.textContent=book.volumeInfo.title;
+        article.appendChild(title);
+
+        
+    container.appendChild(article);
     }
+
 
    
 }
 
-// formInfo();
-// let contenedor=document.querySelector("#contenedor")
-//apiSearch();
+apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
+formInfo();
 
 //API FLORA DE ESPAÑA
 
+const apiSearchNat=()=>{
+    fetch("https://restcountries.eu/rest/v2/all")
+    .then(response => response.json())
+    .then(responseJSON => {
+    let data = responseJSON;
+    // for(pais of data){
+    //     console.log(pais.alpha3Code)
+    //     apiSearchTrefle(pais.alpha3Code)
+    // }
+	
+    apiSearchTrefle(data[0].alpha3Code)
+        
+    });  
+}
+
 const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
 const publicCors="https://cors-anywhere.herokuapp.com/"
-const apiSearchTrefle=()=>{
-    fetch(publicCors+"https://trefle.io/api/v1/distributions/spa/plants/?token="+tokenTrefle)
+
+const apiSearchTrefle=(nat)=>{
+    fetch(publicCors+"https://trefle.io/api/v1/distributions/"+nat+"/plants/?token="+tokenTrefle)
     .then(response => response.json())
     .then(responseJSON => {
 	let data = responseJSON;
@@ -62,4 +96,6 @@ const apiSearchTrefle=()=>{
     });  
 }
 
-apiSearchTrefle();
+//formInfo();
+//apiSearchTrefle();
+//apiSearchNat();
