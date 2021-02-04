@@ -4,6 +4,8 @@ let arrayBusqueda=["Javier Marías","Dolores Redondo", "Antonio Iturbe","Juan G�
 
 let busqueda=false;
 
+let container=document.querySelector(".data__container__books")
+
 const formInfo=()=>{
     let button=document.querySelector("#button");
 
@@ -24,20 +26,22 @@ const apiSearchLibrary=(search)=>{
 	let data = responseJSON;
 	//console.log(data)
     
-    if(busqueda){
-        document.querySelector(".book_info_title").textContent=" Datos obtenidos de la busqueda" 
-    }
+   
         if(data.totalItems!=0){
          mostrarInfo(data.items);
+            if(busqueda){
+                document.querySelector(".book_info_title").textContent=" Datos obtenidos de la busqueda" 
+            }
 		}else{
-           alert("No se ha encontrado")
+            
+                document.querySelector(".book_info_title").textContent=" No se han encontrado resultados" 
         }
     });  
 }
 
 
 const mostrarInfo=(data)=>{
-    let container=document.querySelector(".data__container__books")
+   
     container.innerHTML="";
 
    
@@ -67,48 +71,40 @@ const mostrarInfo=(data)=>{
 
 //API FLORA DE ESPAÑA
 
-const apiSearchNat=()=>{
-    fetch("https://restcountries.eu/rest/v2/region/europe")
+const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
+const publicCors="https://cors-anywhere.herokuapp.com/"
+let containerPlant=document.querySelector(".content__2")
+
+const apiSearchTrefle=()=>{
+    fetch(publicCors+"https://trefle.io/api/v1/distributions/spa/plants/?token="+tokenTrefle)
     .then(response => response.json())
     .then(responseJSON => {
     let data = responseJSON;
-     
-        insertNat(data)
-     
-        
-    });  
-}
-
-const insertNat=(paises)=>{
-    for(pais of paises){
-        let container=document.querySelector(".paises__container")
-        let li=document.createElement("li")
-        li.innerHTML="Vegetacion de "+pais.name
-        li.setAttribute("id",pais.alpha3Code);
-        li.className="paises__list"
-        container.appendChild(li)
-        
-    }
-}
-
-document.addEventListener("click",(event)=>{
-        if(event.target.className=="paises__list"){
-            apiSearchTrefle(event.target.id)
-        }
-})
-
-const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
-const publicCors="https://cors-anywhere.herokuapp.com/"
-
-const apiSearchTrefle=(nat)=>{
-    fetch(publicCors+"https://trefle.io/api/v1/distributions/"+nat+"/plants/?token="+tokenTrefle)
-    .then(response => response.json())
-    .then(responseJSON => {
-	let data = responseJSON;
-	console.log(data)
+    console.log(data.data)
+    mostrarGaleria(data.data)
     
         
     });  
+}
+
+const mostrarGaleria=(datos)=>{
+
+    for(dato of datos){
+        let article=document.createElement("article");
+        article.className="article__plant";
+
+        let img=document.createElement("img");
+        img.setAttribute("src",dato.image_url)
+        img.className="fotos"
+        article.appendChild(img);
+
+        let title=document.createElement("h5");
+        title.textContent=dato.scientific_name;
+        article.appendChild(title);
+    containerPlant.appendChild(article);
+
+    }
+
 }
 
 
@@ -117,6 +113,5 @@ if(page.id=="index1"){
     apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
     formInfo();
 }else{
-    //apiSearchTrefle("spa");
-    apiSearchNat();
+    apiSearchTrefle();
 }

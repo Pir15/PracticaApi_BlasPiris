@@ -1,34 +1,41 @@
 /* Estilos por defecto (pantalla de escritorio) */
 body{
     margin: 0 auto;
-    text-align: center;
-   
-    
+    text-align: center; 
+
 }
 
 .container__1{
   display: grid;
   grid-template-columns:1fr;
   grid-template-rows: repeat (5, 1fr);
-  font-family: 'Times New Roman', Times, serif;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-image: url("../imagenes/fondo1.jpg");
   background-size: cover;
 }
 
 .container__2{
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 5fr;
   grid-template-areas:
     'header_2 header_2'
-    'menu_2 menu_2'
-    'menu_paises section_2'
+    'columna section_2'
     'footer_2 footer_2';
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .header__1{
-  background-image: url("../imagenes/textura1.png");
+  background-color: rgb(95, 0, 0);
+  color: whitesmoke;
     padding: 25px;
+}
+
+.header__1 .title{
+  font-size: 3rem;
+}
+
+.header__1 .subtitle{
+  font-size: 1.6rem;
 }
 
 .header__2{
@@ -43,8 +50,8 @@ h1,h2,h3,h4,h5{
 }
 
 .menu__1{
-  background-image: url("../imagenes/textura2.png");
-  border-top: 2px solid black;
+  background-color: rgba(214, 214, 214, 0.9);
+  
   }
    
 .menu__1 ul {
@@ -55,16 +62,21 @@ h1,h2,h3,h4,h5{
    
 .menu__1 ul li {
     float: left;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+    font-size: 1.2rem;
   }
-   
+  
+ 
 .menu__1 ul li a {
     display: block; 
     padding: 20px;
     color: black;
     text-decoration: none;
   }
+
+  .menu__1 ul li a:hover {
+    color:whitesmoke;
+  }
+   
 
   .menu__2{
     background-color: aqua;
@@ -77,12 +89,7 @@ h1,h2,h3,h4,h5{
      margin: 0;
    }
     
- .menu__2 ul li {
-     float: left;
-     font-family: Arial, sans-serif;
-     font-size: 16px;
-   }
-    
+
  .menu__2 ul li a {
      display: block; 
      padding: 20px;
@@ -90,31 +97,27 @@ h1,h2,h3,h4,h5{
      text-decoration: none;
    }
 
-   .menu_paises{
-    grid-area: menu_paises;
-    background-color: blue;
-    padding: 10px;
+   .columna{
+    grid-area: columna;
    }
 
-   .paises__container{
-    list-style: none;
-    overflow: hidden; 
-    text-align: left;
-    display:inline-block;
-  }
 
-  .paises__list{
-    text-decoration: underline;
-    padding: 3px;
-  }
-   
-
-   .content_2{
-    grid-area: section_2;
+   .content__2{
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(3,33%);
    }
+
   .search__1{
     padding: 20px;
     font-size: 1.3em;
+    color: whitesmoke;
+  }
+
+  .book_info_title{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: whitesmoke;
   }
 
   .data__container__books{
@@ -127,19 +130,35 @@ h1,h2,h3,h4,h5{
   }
 
   .article__book{
+    color: black;
     border-radius: 5px;
-    background-image: url("../imagenes/textura1.png");
+    border:1px solid black;
+    background-color: rgba(214, 214, 214, 0.9);
     display: flex;
     flex-direction: column;
-    justify-content: space-between ;
+    align-items: center;
+    justify-content: flex-end;
     padding: 10px;
     margin:15px;
-    
+  }
+
+  .article__plant{
+    color: black;
+    border-radius: 5px;
+    border:1px solid black;
+    background-color: rgba(214, 214, 214, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    margin:15px;
   }
    
 
 .footer__1{
-  background-image: url(../imagenes/textura2.png);
+  background-color: rgb(95, 0, 0);
+  color: whitesmoke;
   
   display: flex;
   align-items: center;
@@ -165,8 +184,7 @@ footer ul {
 
 .footer__1 ul li a{
   display: block; 
- 
-  color:black;
+ color: whitesmoke;
 }
 
 .footer__2 ul li a{
@@ -209,6 +227,11 @@ footer ul {
 }
 /* Smartphone en posición horizontal y resoluciones inferiores */
 @media (max-width: 480px) {
+
+  .menu__1 ul li {
+    float:none
+  }
+
   .data__container__books{
     grid-template-columns: repeat(1,1fr);
    }
