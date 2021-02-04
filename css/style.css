@@ -154,7 +154,11 @@ h1,h2,h3,h4,h5{
     padding: 10px;
     margin:15px;
   }
-   
+  
+  .fotos__plant{
+    max-width: 100%;
+    height: auto;
+  }
 
 .footer__1{
   background-color: rgb(95, 0, 0);

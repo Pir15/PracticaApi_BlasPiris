@@ -69,43 +69,51 @@ const mostrarInfo=(data)=>{
 
 
 
-//API FLORA DE ESPAÑA
+//API F1
 
-const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
-const publicCors="https://cors-anywhere.herokuapp.com/"
-let containerPlant=document.querySelector(".content__2")
 
-const apiSearchTrefle=()=>{
-    fetch(publicCors+"https://trefle.io/api/v1/distributions/spa/plants/?token="+tokenTrefle)
+
+const apiF1Equipos=()=>{
+    fetch("https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=Formula%201")
     .then(response => response.json())
     .then(responseJSON => {
     let data = responseJSON;
-    console.log(data.data)
-    mostrarGaleria(data.data)
-    
+    console.log(data)
+
         
     });  
 }
 
-const mostrarGaleria=(datos)=>{
+let driverArray=["Lewis Hamilton","Valtteri Bottas","Max Verstappen","Sergio Perez",
+"Daniel Ricciardo","Lando Norris","Sebastian Vettel","Lance Stroll","Fernando Alonso",
+"Esteban Ocon","Charles Leclerc","Carlos Sainz","Pierre Gasly","Yuki Tsunoda","Kimi Raikkonen",
+"Antonio Giovinazzi","Nikita Mazepin","Mick Schumacher","Nicholas Latifi","George Russell"]
 
-    for(dato of datos){
-        let article=document.createElement("article");
-        article.className="article__plant";
-
-        let img=document.createElement("img");
-        img.setAttribute("src",dato.image_url)
-        img.className="fotos"
-        article.appendChild(img);
-
-        let title=document.createElement("h5");
-        title.textContent=dato.scientific_name;
-        article.appendChild(title);
-    containerPlant.appendChild(article);
-
+const apiF1Pilotos=()=>{
+    for(piloto of driverArray){
+        fetch("https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p="+piloto)
+        .then(response => response.json())
+        .then(responseJSON => {
+        let data = responseJSON;
+        console.log(data)  
+        });  
     }
-
 }
+
+const apiF1Temporada=()=>{
+    fetch("https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=4370&s=2021")
+    .then(response => response.json())
+    .then(responseJSON => {
+    let data = responseJSON;
+    console.log(data)      
+    });  
+}
+
+
+
+
+
+
 
 
 let page=document.querySelector(".ref")
@@ -113,5 +121,7 @@ if(page.id=="index1"){
     apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
     formInfo();
 }else{
-    apiSearchTrefle();
+    //apiF1Equipos();
+    //apiF1Temporada();
+    apiF1Pilotos();
 }
