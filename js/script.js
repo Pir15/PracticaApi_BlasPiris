@@ -22,7 +22,7 @@ const apiSearchLibrary=(search)=>{
     .then(response => response.json())
     .then(responseJSON => {
 	let data = responseJSON;
-	console.log(data)
+	//console.log(data)
     
     if(busqueda){
         document.querySelector(".book_info_title").textContent=" Datos obtenidos de la busqueda" 
@@ -62,25 +62,40 @@ const mostrarInfo=(data)=>{
    
 }
 
-apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
-formInfo();
+
+
 
 //API FLORA DE ESPAÑA
 
 const apiSearchNat=()=>{
-    fetch("https://restcountries.eu/rest/v2/all")
+    fetch("https://restcountries.eu/rest/v2/region/europe")
     .then(response => response.json())
     .then(responseJSON => {
     let data = responseJSON;
-    // for(pais of data){
-    //     console.log(pais.alpha3Code)
-    //     apiSearchTrefle(pais.alpha3Code)
-    // }
-	
-    apiSearchTrefle(data[0].alpha3Code)
+     
+        insertNat(data)
+     
         
     });  
 }
+
+const insertNat=(paises)=>{
+    for(pais of paises){
+        let container=document.querySelector(".paises__container")
+        let li=document.createElement("li")
+        li.innerHTML="Vegetacion de "+pais.name
+        li.setAttribute("id",pais.alpha3Code);
+        li.className="paises__list"
+        container.appendChild(li)
+        
+    }
+}
+
+document.addEventListener("click",(event)=>{
+        if(event.target.className=="paises__list"){
+            apiSearchTrefle(event.target.id)
+        }
+})
 
 const tokenTrefle="nfhfGDGVD_eItALYUl7NrAfot5ARYlBE2MfY0V_vad8"
 const publicCors="https://cors-anywhere.herokuapp.com/"
@@ -96,6 +111,12 @@ const apiSearchTrefle=(nat)=>{
     });  
 }
 
-//formInfo();
-//apiSearchTrefle();
-//apiSearchNat();
+
+let page=document.querySelector(".ref")
+if(page.id=="index1"){
+    apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
+    formInfo();
+}else{
+    //apiSearchTrefle("spa");
+    apiSearchNat();
+}
