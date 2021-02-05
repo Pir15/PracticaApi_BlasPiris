@@ -24,7 +24,7 @@ const apiSearchLibrary=(search)=>{
     .then(response => response.json())
     .then(responseJSON => {
 	let data = responseJSON;
-	//console.log(data)
+
     
    
         if(data.totalItems!=0){
@@ -50,12 +50,17 @@ const mostrarInfo=(data)=>{
         article.className="article__book";
 
         let img=document.createElement("img");
-        img.setAttribute("src",book.volumeInfo.imageLinks.thumbnail)
-        img.className="fotos"
+        if(book.volumeInfo.imageLinks!=undefined)
+            img.setAttribute("src",book.volumeInfo.imageLinks.thumbnail)
+        else{
+            img.setAttribute("src","../imagenes/sinportada.jpg")
+        }
+        img.classList.add("fotos_res");
         article.appendChild(img);
 
         let title=document.createElement("h5");
         title.textContent=book.volumeInfo.title;
+        title.classList.add("title__book")
         article.appendChild(title);
 
         
@@ -68,60 +73,11 @@ const mostrarInfo=(data)=>{
 
 
 
-
-//API F1
-
-
-
-const apiF1Equipos=()=>{
-    fetch("https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=Formula%201")
-    .then(response => response.json())
-    .then(responseJSON => {
-    let data = responseJSON;
-    console.log(data)
-
-        
-    });  
-}
-
-let driverArray=["Lewis Hamilton","Valtteri Bottas","Max Verstappen","Sergio Perez",
-"Daniel Ricciardo","Lando Norris","Sebastian Vettel","Lance Stroll","Fernando Alonso",
-"Esteban Ocon","Charles Leclerc","Carlos Sainz","Pierre Gasly","Yuki Tsunoda","Kimi Raikkonen",
-"Antonio Giovinazzi","Nikita Mazepin","Mick Schumacher","Nicholas Latifi","George Russell"]
-
-const apiF1Pilotos=()=>{
-    for(piloto of driverArray){
-        fetch("https://www.thesportsdb.com/api/v1/json/1/searchplayers.php?p="+piloto)
-        .then(response => response.json())
-        .then(responseJSON => {
-        let data = responseJSON;
-        console.log(data)  
-        });  
-    }
-}
-
-const apiF1Temporada=()=>{
-    fetch("https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=4370&s=2021")
-    .then(response => response.json())
-    .then(responseJSON => {
-    let data = responseJSON;
-    console.log(data)      
-    });  
-}
-
-
-
-
-
-
-
-
-let page=document.querySelector(".ref")
-if(page.id=="index1"){
+document.addEventListener("DOMContentLoaded",()=>{
     apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
     formInfo();
-}else{
-    //apiF1Equipos();
-    //apiF1Temporada();
-    apiF1Pilotos();
-}
+})
+
+   
+
+    

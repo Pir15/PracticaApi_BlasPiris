@@ -1,0 +1,287 @@
+/* Estilos por defecto (pantalla de escritorio) */
+body{
+    margin: 0 auto;
+    text-align: center; 
+
+}
+
+.container__1{
+  display: grid;
+  grid-template-columns:1fr;
+  grid-template-rows: repeat (5, 1fr);
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-image: url("../imagenes/fondo1.jpg");
+  background-size: cover;
+}
+
+.container__2{
+  display: grid;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.header__1{
+  background-color: rgb(0, 95, 71);
+  color: whitesmoke;
+    padding: 25px;
+}
+
+.header__1 .title{
+  font-size: 3rem;
+}
+
+.header__1 .subtitle{
+  font-size: 1.6rem;
+}
+
+.header__2{
+  background-color: red;
+  padding: 25px;
+}
+
+
+h1,h2,h3,h4,h5{
+    margin: 0;
+}
+
+.menu__1{
+  background-color: rgba(214, 214, 214, 0.9);
+  
+  }
+   
+.menu__1 ul {
+    list-style: none;
+    overflow: hidden; 
+    margin: 0;
+  }
+   
+.menu__1 ul li {
+    float: left;
+    font-size: 1.2rem;
+  }
+  
+ 
+.menu__1 ul li a {
+    display: block; 
+    padding: 20px;
+    color: black;
+    text-decoration: none;
+  }
+
+  .menu__1 ul li a:hover {
+    color:rgb(0, 95, 71);
+    text-decoration: underline;
+  }
+   
+
+  .menu__2{
+    background-color: aqua;
+   }
+    
+ .menu__2 ul {
+     list-style: none;
+     overflow: hidden; 
+     margin: 0;
+   }
+
+   .menu__2 ul li {
+    float: left;
+    font-size: 1.2rem;
+  }
+    
+
+ .menu__2 ul li a {
+     display: block; 
+     padding: 20px;
+     color: black;
+     text-decoration: none;
+   }
+
+
+
+  
+  
+
+  .search__1{
+    padding: 20px;
+    font-size: 1.3em;
+    color: whitesmoke;
+  }
+
+  .book_info_title{
+    font-size: 1.3em;
+    font-weight: bold;
+    color: whitesmoke;
+  }
+
+  .data__container__books{
+    width:60%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns: repeat(3,33%);
+    align-content: space-between;
+  }
+
+
+  .article__book{
+    color: black;
+    border-radius: 5px;
+    border:1px solid black;
+    background-color: rgba(214, 214, 214, 0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    margin:15px;
+  }
+
+  
+  .article__teams{
+    color: black;
+    border-radius: 5px;
+    border:1px solid black;
+    background-color: rgba(255, 2, 2, 0.356);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 10px;
+    margin:15px;
+  }
+
+  .calendar__text__title{
+    background-color:gainsboro;
+    font-size: 1.6em;
+    font-weight: bold;
+    border: 3px solid black;
+    margin: 3px;
+    
+  }
+  .calendar__text{
+    background-color: white;
+    font-size: 1.3em;
+    border: 1px solid black;
+    margin: 2px;
+  }
+
+  .content__2{
+    width: 80%;
+    margin:25px;
+    display:grid;
+    grid-template-columns: repeat(3,33%);
+    align-content: space-between;
+    margin: 0 auto;
+  }
+
+  .content__2__calendar{
+    width: 80%;
+    background-color: red;
+    margin:25px;
+    display:grid;
+    grid-template-columns: 15% 35% 15% 35%;
+    margin: 0 auto;
+    margin-top: 50px;
+   
+  }
+
+  .fotos__res{
+    max-width: 100%;
+    height: auto;
+  }
+
+.footer__1{
+  background-color: rgb(0, 95, 71);
+  color: whitesmoke;
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px
+  
+}
+
+.footer__2{
+ 
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+
+}
+
+footer ul {
+  list-style: none;
+  overflow: hidden; 
+  margin: 0;
+}
+
+.footer__1 ul li a{
+  display: block; 
+ color: whitesmoke;
+}
+
+.footer__2 ul li a{
+  display: block; 
+ 
+  color:white;
+}
+
+.text__footer__1{
+  padding:15px;
+}
+
+.info__footer__1{
+  border-left: 1px solid white;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding:15px;
+}
+
+
+/* Pantalla grande y resoluciones superiores */ 
+@media (min-width: 1200px) {  }
+/* Tabletas en posición vertical */
+@media (max-width: 880px) {
+  .data__container__books{
+    grid-template-columns: repeat(2,1fr);
+   }
+
+  .footer__1{
+    display: block;  
+  }
+
+  .info__footer__1{
+    border-left: none;
+    border-top: 1px solid white;
+    width: 100%;
+  }
+}
+/* Smartphone en posición horizontal y resoluciones inferiores */
+@media (max-width: 480px) {
+
+  .menu__1 ul li {
+    float:none
+  }
+
+  .data__container__books{
+    grid-template-columns: repeat(1,1fr);
+   }
+
+   .info__footer__1{
+    display: block;
+  }
+
+  .info__footer__1 ul{
+    padding: 10px;
+  }
+
+}
+ 
+/* Smartphone en posición vertical */
+@media (max-width: 320px) {   
+  
+  
+
+ }
