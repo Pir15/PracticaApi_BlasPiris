@@ -18,16 +18,31 @@ const mostrarEquipos=(equipos)=>{
        
 
         let article=document.createElement("article");
-        article.className="article__teams";
+        article.className="article__f1";
+
+        let title=document.createElement("h3");
+        title.textContent=equipo.strTeam;
+        title.classList.add("article__f1__title")
+        article.appendChild(title);
 
         let img=document.createElement("img");
         img.setAttribute("src",equipo.strTeamLogo)
         img.className="fotos__res"
         article.appendChild(img);
 
-        let title=document.createElement("h5");
-        title.textContent=equipo.strTeam;
-        article.appendChild(title);
+        let year=document.createElement("h5");
+        year.textContent="Año de fundación: "+equipo.intFormedYear;
+        year.classList.add("article__f1__info")
+        article.appendChild(year);
+
+        let country=document.createElement("h5");
+        country.textContent="Pais: "+equipo.strCountry;
+        country.classList.add("article__f1__info")
+        article.appendChild(country);
+
+        console.log(equipo)
+
+        
 
     container.appendChild(article);
     }
@@ -60,16 +75,30 @@ const apiF1Pilotos=(drivers)=>{
 const mostrarPilotos=(piloto)=>{
     
       let article=document.createElement("article");
-        article.className="article__teams";
+        article.className="article__f1";
+
+        let title=document.createElement("h3");
+        title.textContent=piloto.strPlayer;
+        title.classList.add("article__f1__title")
+        article.appendChild(title);
 
          let img=document.createElement("img");
          img.setAttribute("src",piloto.strThumb)
          img.className="fotos__res"
         article.appendChild(img);
 
-         let title=document.createElement("h5");
-         title.textContent=piloto.strPlayer;
-         article.appendChild(title);
+        let date=document.createElement("h5");
+        date.textContent="Nacionalidad: "+piloto.strNationality;
+        date.classList.add("article__f1__info")
+        article.appendChild(date);
+
+        let team=document.createElement("h5");
+        team.textContent="Equipo: "+piloto.strTeam;
+        team.classList.add("article__f1__info")
+        article.appendChild(team);
+
+        
+        
 
      container.appendChild(article);
     
