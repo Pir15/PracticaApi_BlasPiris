@@ -6,6 +6,7 @@ let busqueda=false;
 
 let container=document.querySelector(".data__container__books")
 
+//FUNCION QUE RECOGE LOS DATOS DEL FORMULARIO
 const formInfo=()=>{
     let button=document.querySelector("#button");
 
@@ -18,7 +19,7 @@ const formInfo=()=>{
     })  
 }
 
-
+//FUNCION QUE BUSCA EN EL API LOS RESULTADOS DE LA BUSQUEDA DEL FORMULARIO
 const apiSearchLibrary=(search)=>{
     fetch("https://www.googleapis.com/books/v1/volumes?q="+search)
     .then(response => response.json())
@@ -40,6 +41,7 @@ const apiSearchLibrary=(search)=>{
 }
 
 
+//FUNCION QUE MUESTRA LOS DATOS DE LOS LIBROS DE LA BUSQUEDA
 const mostrarInfo=(data)=>{
    
     container.innerHTML="";
@@ -72,6 +74,7 @@ const mostrarInfo=(data)=>{
     }
 }
 
+//FUNCION QUE BUSCA UN LIBRO POR SU ID
 const searchBook=(id)=>{
     fetch("https://www.googleapis.com/books/v1/volumes/"+id)
     .then(response => response.json())
@@ -82,6 +85,7 @@ const searchBook=(id)=>{
     }); 
 }
 
+//FUNCION QUE MUESTRA LOS DATOS DE UN LIBRO
 const mostrarBook=(book)=>{
     container.innerHTML="";
     container.className="book__info"
@@ -127,12 +131,13 @@ const mostrarBook=(book)=>{
 }
 
 
-
+//EVENTO DE ARRANQUE QUE MUESTRA LIBROS RECOMENDADOS
 document.addEventListener("DOMContentLoaded",()=>{
     apiSearchLibrary(arrayBusqueda[Math.floor(Math.random()*arrayBusqueda.length)]);
     formInfo();
 })
 
+//EVENTO PARA VER LA INFORMACION DE CADA LIBRO
 document.addEventListener("click",(event)=>{
     if(event.target.className=="title__book" || event.target.className=="fotos_res"){
         searchBook(event.target.id)

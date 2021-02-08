@@ -1,4 +1,4 @@
-/* Estilos por defecto (pantalla de escritorio) */
+/*ESTILOS DE INDEX*/
 html{
   width: 100%;
 }
@@ -205,13 +205,13 @@ footer ul {
 }
 
 
-/* Pantalla grande y resoluciones superiores */ 
+
 @media (min-width: 1700px) {
   .data__container__books{
     grid-template-columns: repeat(4,1fr);
    }
   }
-/* Tabletas en posición vertical */
+
 @media (max-width: 1000px) {
   .data__container__books{
     grid-template-columns: repeat(2,50%);
@@ -231,7 +231,7 @@ footer ul {
     flex-direction: column;
   }
 }
-/* Smartphone en posición horizontal y resoluciones inferiores */
+
 @media (max-width: 600px) {
 
   .menu ul li {
@@ -252,7 +252,6 @@ footer ul {
 
 }
  
-/* Smartphone en posición vertical */
 @media (max-width: 320px) {   
   
   

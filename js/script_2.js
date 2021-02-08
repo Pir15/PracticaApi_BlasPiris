@@ -2,6 +2,8 @@
 
 let container=document.querySelector(".content")
 
+//FUNCION QUE BUSCA EN EL API LOS EQUIPOS
+
 const apiF1Equipos=()=>{
     fetch("https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l=Formula%201")
     .then(response => response.json())
@@ -11,6 +13,7 @@ const apiF1Equipos=()=>{
     });  
 }
 
+//FUNCION QUE MUESTRA POR PANTALLA LOS EQUIPOS
 const mostrarEquipos=(equipos)=>{
     container.innerHTML="";
     container.className="content"
@@ -48,6 +51,7 @@ const mostrarEquipos=(equipos)=>{
     }
 }
 
+//FUNCION QUE BUSCA LOS PILOTOS EN EL API
 const apiF1Search=()=>{
         fetch("http://ergast.com/api/f1/2020/drivers.json")
         .then(response => response.json())
@@ -57,8 +61,7 @@ const apiF1Search=()=>{
         });  
     }
 
-
-
+//FUNCION QUE BUSCA EN EL API LOS DATOS DE LOS PILOTOS DE LA API PRINCIPAL
 const apiF1Pilotos=(drivers)=>{
     container.className="content";
     container.innerHTML="";
@@ -72,6 +75,7 @@ const apiF1Pilotos=(drivers)=>{
     }
 }
 
+//FUNCION QUE MUESTRA LOS DATOS DE LOS PILOTOS
 const mostrarPilotos=(piloto)=>{
     
       let article=document.createElement("article");
@@ -104,6 +108,7 @@ const mostrarPilotos=(piloto)=>{
     
 }
 
+//EVENTOS 
 document.addEventListener("DOMContentLoaded",()=>{
     apiF1Equipos();
     document.addEventListener("click",(event)=>{
